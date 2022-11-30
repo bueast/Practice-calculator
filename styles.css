@@ -13,8 +13,47 @@ body {
 .calculator-grid {
     display: grid;
     justify-content: center;
-    align-items: center;
+    align-content: center; /*brings items together in center of page*/
     min-height: 100vh; /*Fills 100% of viewport height*/
     grid-template-columns: repeat(4, 100px); /*Repeat, 4 columns, 100px wide*/
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);  /*minmax min 120px tall but max is auto which is as large as it needs to be*/  /*Same as above. repeat, 5 rows, 100px tall*/
+
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.calculator-grid > button:hover {
+    background-color: rgba(255, 255, 255, .90);
+}
+
+.span-two {
+    grid-column: span 2;  /*makes button size of 2 boxes*/
+}
+
+.output {
+    grid-column: 1 / -1;  /*set width to size of grid*/
+    background-color: rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.output .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+.output .current-operand {
+    color: white;
+    font-size: 2.5rem;
 }
