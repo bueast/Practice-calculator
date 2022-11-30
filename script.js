@@ -6,8 +6,8 @@ class Calculator {
     }
 
     clear() {
-        this.currentOperand = ""
-        this.previousOperand = ""
+        this.currentOperand = ''
+        this.previousOperand = ''
         this.operation = undefined
     }
 
@@ -22,7 +22,7 @@ class Calculator {
 
     chooseOperation(operation) {
         if (this.currentOperand === '') return
-        if (this.previousOperand !=='') {
+        if (this.previousOperand !== '') {
             this.compute()
         }
         this.operation = operation
@@ -40,51 +40,53 @@ class Calculator {
                 computation = prev + current
                 break
             case '-':
-                    computation = prev - current
-                    break
+                computation = prev - current
+                break
             case '*':
                 computation = prev * current
                 break
             case '÷':
                 computation = prev / current
                 break
-                default:
-                    return
+            default:
+                return
         }
         this.currentOperand = computation
         this.operation = undefined
-        this. previousOperand = ''
+        this.previousOperand = ''
     }
 
     getDisplayNumber(number) {
         const stringNumber = number.toString()
         const integerDigits = parseFloat(stringNumber.split('.')[0])
         const decimalDigits = stringNumber.split('.')[1]
-        let integerDisplay 
+        let integerDisplay
         if (isNaN(integerDigits)) {
             integerDisplay = ''
         } else {
-            integerDisplay = integerDigits.toLocaleString('en', {
-                maximumFractionDigits: 0 })
-            }
-            if (decimalDigits !=null) {
-                return `${integerDisplay}.${decimalDigits}`
-            }
+            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0})
         }
-    
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else {
+            return integerDisplay
+        }
     }
 
-    updateDisplay() {
-        this.currentOperandTextElement.innerText = 
+
+
+updateDisplay() {
+    this.currentOperandTextElement.innerText =
         this.getDisplayNumber(this.currentOperand)
-        if (this.operation != null) {
-        this.previousOperandTextElement.innerText = 
-        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
-        } else  {
-            this. previousOperandTextElement.innerText = ''
-        }
+    if (this.operation != null) {
+        this.previousOperandTextElement.innerText =
+            `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    } else {
+        this.previousOperandTextElement.innerText = ''
     }
 }
+}
+
 
 
 const numberButtons = document.querySelectorAll('[data-number]')
